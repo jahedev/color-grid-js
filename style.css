@@ -1,3 +1,13 @@
+:root {
+  --td-hover: #c2351645;
+  --btn-default: #16697a;
+  --btn-default-hover: #1a7a8e;
+  --btn-add: #478e41;
+  --btn-remove: #c70039;
+  --btn-add-hover: #59b151;
+  --btn-remove-hover: #cd315d;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +15,9 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #474787;
+
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #262d37;
   color: white;
 }
 #toolbar {
@@ -26,7 +37,7 @@ body {
 
 button {
   height: 100%;
-  background-color: #16697a;
+  background-color: var(--btn-default);
   color: white;
   border: none;
   border-radius: 5px;
@@ -36,40 +47,40 @@ button {
 }
 
 button:hover {
-  background-color: #1a7a8e;
+  background-color: var(--btn-default-hover);
   transition: all 0.2s;
 }
 
 button:active {
-  background-color: #16697a;
+  background-color: var(--btn-default);
 }
 
 #remove-col-btn,
 #remove-row-btn {
-  background-color: #c70039;
+  background-color: var(--btn-remove);
 }
 
 #remove-col-btn:hover,
 #remove-row-btn:hover {
-  background-color: #cd315d;
+  background-color: var(--btn-remove-hover);
 }
 #remove-col-btn:active,
 #remove-row-btn:active {
-  background-color: #c70039;
+  background-color: var(--btn-remove);
 }
 
 #add-col-btn,
 #add-row-btn {
-  background-color: #478e41;
+  background-color: var(--btn-add);
 }
 
 #add-col-btn:hover,
 #add-row-btn:hover {
-  background-color: #59b151;
+  background-color: var(--btn-add-hover);
 }
 #add-col-btn:active,
 #add-row-btn:active {
-  background-color: #478e41;
+  background-color: var(--btn-add);
 }
 
 #clearall-btn {
@@ -124,5 +135,37 @@ td {
 }
 
 td:hover {
-  background-color: #c2351645;
+  background-color: var(--td-hover);
+}
+
+@media (max-width: 768px) {
+  #toolbar {
+    padding-bottom: 3rem;
+  }
+  button {
+    color: var(--btn-default);
+  }
+  button:hover {
+    color: var(--btn-default-hover);
+  }
+
+  #add-col-btn,
+  #add-row-btn {
+    color: var(--btn-add);
+  }
+
+  #remove-col-btn,
+  #remove-row-btn {
+    color: var(--btn-remove);
+  }
+
+  #add-col-btn:hover,
+  #add-row-btn:hover {
+    color: var(--btn-add-hover);
+  }
+
+  #remove-col-btn:hover,
+  #remove-row-btn:hover {
+    color: var(--btn-remove-hover);
+  }
 }

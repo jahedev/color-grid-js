@@ -22,26 +22,19 @@
           </button>
         </div>
         <div class="col" id="col-2">
-          <button
-            onclick="fillAllCells()"
-            id="findall-btn"
-            class="btn select-column"
-          >
-            Fill All
-          </button>
-          <!-- <button id="findcolored-btn" class="btn select-column"></button> -->
-          <button
-            onclick="restoreColor()"
-            id="clearall-btn"
-            class="btn select-column"
-          >
-            Clear All
+          <button id="fillall-btn" class="btn select-column">Fill All</button>
+          <button id="filluncolored-btn" class="btn select-column">
+            Fill Uncolored
           </button>
           <select name="color-select" id="color-select">
-            <option value="red">Red</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
+            <option>Red</option>
+            <option>Green</option>
+            <option>Yellow</option>
+            <option>Purple</option>
+            <option>Pink</option>
+            <option>Uncolor</option>
           </select>
+          <button id="download-btn" class="btn col-button">&#8595;</button>
         </div>
         <div class="col" id="col-3">
           <button onclick="addRow()" id="add-row-btn" class="btn col-button">
@@ -57,13 +50,17 @@
         </div>
       </div>
       <div id="content">
-        <table id="table">
-          <tr class="row">
-            <td id="firstCell">&nbsp;</td>
+        <table>
+          <tr>
+            <td>&nbsp;</td>
           </tr>
         </table>
       </div>
     </div>
+    <!-- ReImg: Canvas2PngDownload https://github.com/gillyb/reimg -->
+    <script src="reimg.js"></script>
+    <!-- HTML2Canvas https://html2canvas.hertzen.com/ -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
