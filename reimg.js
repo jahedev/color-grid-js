@@ -1,3 +1,6 @@
+
+/* Taken From: https://github.com/gillyb/reimg */
+
 ReImg = {
   OutputProcessor: function (encodedData, svgElement) {
     var isPng = function () {
