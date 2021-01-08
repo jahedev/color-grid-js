@@ -3,8 +3,8 @@
 const btn_addCol = document.querySelector('#add-col-btn');
 const btn_removeCol = document.querySelector('#remove-col-btn');
 
-const btn_findAll = document.querySelector('#findall-btn');
-const btn_findColored = document.querySelector('#findcolored-btn');
+const btn_fillAll = document.querySelector('#fillall-btn');
+const btn_fillUncolored = document.querySelector('#filluncolored-btn');
 const btn_clearAll = document.querySelector('#clearall-btn');
 
 const btn_addRow = document.querySelector('#add-row-btn');
@@ -17,12 +17,8 @@ let options = colorSelector.querySelectorAll('option');
 
 const table = document.querySelector('table');
 
-// var colors = [new Map();
-// colors.set('Red', '#c23616');
-// colors.set('Green', '16c79a');
-// colors.set('Yellow', 'ffd56b');
-
-var colors = ['#c23616', '#478e41', '#fff76a', '#6155a6', '#e05297'];
+// Red, Green, Yellow, Purple, Pink, Uncolor
+var colors = ['#c23616', '#478e41', '#fff76a', '#6155a6', '#e05297', ''];
 
 var color = colors[0]; // red
 
@@ -36,27 +32,9 @@ btn_removeCol.addEventListener('click', removeColumn);
 btn_addRow.addEventListener('click', addRow);
 
 btn_removeRow.addEventListener('click', removeRow);
-var x = 1;
-// table.addEventListener('mousedown', (e) => {
-//   if (e.target.tagName == 'TD') {
-//     // const td = e.target;
-//     // td.style.backgroundColor = color;
-//     e.target.onmousedown(function () {
-//       console.log('mouse is down: ', x++);
-//     });
-//   }
-// });
 
 var mouseDown = false;
-var mouseOver = false;
-
-table.onmouseover = function () {
-  mouseOver = true;
-};
-
-table.onmouseleave = function () {
-  mouseOver = false;
-};
+var mouseLeft = false;
 
 table.onmousedown = function () {
   mouseDown = true;
@@ -65,13 +43,29 @@ table.onmouseup = function () {
   mouseDown = false;
 };
 
-table.addEventListener('mouseover', (e) => {
+table.addEventListener('mousedown', (e) => {
+  mouseLeft = false;
   if (e.target.tagName == 'TD') {
     const td = e.target;
-    if (mouseDown && mouseOver) {
+    if (mouseDown && !mouseLeft) {
       td.style.backgroundColor = color;
     }
   }
+});
+
+table.addEventListener('mouseover', (e) => {
+  if (e.target.tagName == 'TD') {
+    const td = e.target;
+    if (mouseDown && !mouseLeft) {
+      td.style.backgroundColor = color;
+    }
+  } // Self-Note: Yes I know that I'm repeating code
+  // I'm just so tired at this point that I
+  // don't really care, it's 4:24 AM
+});
+
+table.addEventListener('mouseleave', (e) => {
+  mouseLeft = true;
 });
 
 /* #endregion */
@@ -90,7 +84,8 @@ function generateRow(colNum = 1) {
 function generateCols(colNum = 1) {
   return '<td>&nbsp</td>'.repeat(colNum);
 }
-// I think it's cool that I was able to make it
+// Self-Note: I made it recursive! Doesn't seem
+// practical though.
 // I recursive function, but probably should pass
 // on using it.
 // function addRow(n = 1) {
@@ -180,3 +175,35 @@ function convertHex(hexCode, opacity) {
 
   return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
 }
+
+btn_download.addEventListener('click', (e) => {
+  html2canvas(table).then((canvas) => {
+    ReImg.fromCanvas(canvas).downloadPng();
+    // window
+    //   .open()
+    //   .document.write('<img src="' + canvas.toDataURL('image/png') + '" />');
+  });
+});
+
+btn_fillAll.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+  for (const td of TDs) {
+    td.style.backgroundColor = color;
+  }
+});
+
+btn_fillUncolored.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+
+  for (const td of TDs) {
+    if (td.style.backgroundColor === '') td.style.backgroundColor = color;
+  }
+});
+
+btn_clearAll.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+
+  for (const td of TDs) {
+    td.style.backgroundColor = '';
+  }
+});
