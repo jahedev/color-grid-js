@@ -1,4 +1,3 @@
-
 /* #region: Variables */
 
 const btn_addCol = document.querySelector('#add-col-btn');
