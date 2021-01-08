@@ -17,22 +17,12 @@ let options = colorSelector.querySelectorAll('option');
 
 const table = document.querySelector('table');
 
-// Red, Green, Yellow, Purple, Pink, Uncolor
+// Colors: Red, Green, Yellow, Purple, Pink, Uncolor
 var colors = ['#c23616', '#478e41', '#fff76a', '#6155a6', '#e05297', ''];
-
 var color = colors[0]; // red
 
 /* #endregion */
-
-/* #region: Event Listeners */
-btn_addCol.addEventListener('click', addColumn);
-
-btn_removeCol.addEventListener('click', removeColumn);
-
-btn_addRow.addEventListener('click', addRow);
-
-btn_removeRow.addEventListener('click', removeRow);
-
+/* #region: mouse event stuff */
 var mouseDown = false;
 var mouseLeft = false;
 
@@ -42,8 +32,56 @@ table.onmousedown = function () {
 table.onmouseup = function () {
   mouseDown = false;
 };
+/* #endregion */
+/* #region: Event Listeners */
+btn_addCol.addEventListener('click', addColumn);
+btn_removeCol.addEventListener('click', removeColumn);
+btn_addRow.addEventListener('click', addRow);
+btn_removeRow.addEventListener('click', removeRow);
+
+btn_fillAll.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+  for (const td of TDs) {
+    td.style.backgroundColor = color;
+  }
+});
+
+btn_fillUncolored.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+
+  for (const td of TDs) {
+    if (td.style.backgroundColor === '') td.style.backgroundColor = color;
+  }
+});
+
+btn_clearAll.addEventListener('click', (e) => {
+  const TDs = document.querySelectorAll('td');
+
+  for (const td of TDs) {
+    td.style.backgroundColor = '';
+  }
+});
+
+colorSelector.addEventListener('change', (e) => {
+  if (e.target.tagName === 'SELECT') {
+    changeColor(colors[colorSelector.selectedIndex]);
+  }
+});
+
+btn_download.addEventListener('click', (e) => {
+  html2canvas(table).then((canvas) => {
+    ReImg.fromCanvas(canvas).downloadPng();
+    // Open image in a new tab
+    // window.open().document.write('<img src="'
+    // + canvas.toDataURL('image/png') + '" />');
+  });
+});
 
 table.addEventListener('mousedown', (e) => {
+  // If the user's mouse is down but has move the mouse
+  // outside of the table area, we don't want to allow
+  // filling cells when he hovers back, so we use
+  // mouseLeft to track mouse
   mouseLeft = false;
   if (e.target.tagName == 'TD') {
     const td = e.target;
@@ -137,20 +175,6 @@ function removeColumn() {
 function removeColumns(n = 1) {
   for (; n > 0 && numOfCols() > 1; n--) removeColumn();
 }
-/* #endregion */
-
-/* #region: Testing Purposes */
-(function test() {
-  addRows(14);
-  addColumns(14);
-})();
-/* #endregion*/
-
-colorSelector.addEventListener('change', (e) => {
-  if (e.target.tagName === 'SELECT') {
-    changeColor(colors[colorSelector.selectedIndex]);
-  }
-});
 
 function changeColor(c) {
   color = c;
@@ -162,6 +186,7 @@ function changeColor(c) {
 }
 
 // Taken From: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
+// Pladguirsm 💪💪 !
 function convertHex(hexCode, opacity) {
   var hex = hexCode.replace('#', '');
 
@@ -175,35 +200,11 @@ function convertHex(hexCode, opacity) {
 
   return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
 }
-
-btn_download.addEventListener('click', (e) => {
-  html2canvas(table).then((canvas) => {
-    ReImg.fromCanvas(canvas).downloadPng();
-    // window
-    //   .open()
-    //   .document.write('<img src="' + canvas.toDataURL('image/png') + '" />');
-  });
-});
-
-btn_fillAll.addEventListener('click', (e) => {
-  const TDs = document.querySelectorAll('td');
-  for (const td of TDs) {
-    td.style.backgroundColor = color;
-  }
-});
-
-btn_fillUncolored.addEventListener('click', (e) => {
-  const TDs = document.querySelectorAll('td');
-
-  for (const td of TDs) {
-    if (td.style.backgroundColor === '') td.style.backgroundColor = color;
-  }
-});
-
-btn_clearAll.addEventListener('click', (e) => {
-  const TDs = document.querySelectorAll('td');
-
-  for (const td of TDs) {
-    td.style.backgroundColor = '';
-  }
-});
+/* #endregion */
+/* #region: Testing Purposes */
+(function test() {
+  // 15x15 grid at start
+  addRows(14);
+  addColumns(14);
+})();
+/* #endregion*/
