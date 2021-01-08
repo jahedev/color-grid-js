@@ -98,3 +98,4 @@ if (typeof exports === 'object' && typeof module !== void 0) {
 } else {
   window.ReImg = ReImg;
 }
+
