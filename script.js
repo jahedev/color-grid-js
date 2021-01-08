@@ -10,9 +10,22 @@ const btn_clearAll = document.querySelector('#clearall-btn');
 const btn_addRow = document.querySelector('#add-row-btn');
 const btn_removeRow = document.querySelector('#remove-row-btn');
 
+const btn_download = document.querySelector('#download-btn');
+
+const colorSelector = document.getElementById('color-select');
+let options = colorSelector.querySelectorAll('option');
+
 const table = document.querySelector('table');
 
-var color = '#c23616'; // red
+// var colors = [new Map();
+// colors.set('Red', '#c23616');
+// colors.set('Green', '16c79a');
+// colors.set('Yellow', 'ffd56b');
+
+var colors = ['#c23616', '#478e41', '#fff76a', '#6155a6', '#e05297'];
+
+var color = colors[0]; // red
+
 /* #endregion */
 
 /* #region: Event Listeners */
@@ -137,3 +150,33 @@ function removeColumns(n = 1) {
   addColumns(14);
 })();
 /* #endregion*/
+
+colorSelector.addEventListener('change', (e) => {
+  if (e.target.tagName === 'SELECT') {
+    changeColor(colors[colorSelector.selectedIndex]);
+  }
+});
+
+function changeColor(c) {
+  color = c;
+  colorSelector.style.backgroundColor = color;
+
+  let colorTranslucent = convertHex(c, 40);
+
+  document.documentElement.style.setProperty('--td-hover', colorTranslucent);
+}
+
+// Taken From: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
+function convertHex(hexCode, opacity) {
+  var hex = hexCode.replace('#', '');
+
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+
+  var r = parseInt(hex.substring(0, 2), 16),
+    g = parseInt(hex.substring(2, 4), 16),
+    b = parseInt(hex.substring(4, 6), 16);
+
+  return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+}
