@@ -23,6 +23,10 @@ addRow.addEventListener('click', (e) => {
   table.innerHTML += rowHTML;
 });
 
+removeRow.addEventListener('click', (e) => {
+  if (table.childElementCount > 1) table.lastChild.remove();
+});
+
 table.addEventListener('mousedown', (e) => {
   if (e.target.tagName == 'TD') {
     const td = e.target;
