@@ -10,14 +10,8 @@
     <div id="container">
       <div id="toolbar">
         <div class="col" id="col-1">
-          <button onclick="addColumn()" id="add-col-btn" class="btn col-button">
-            Add Column
-          </button>
-          <button
-            onclick="removeColumn()"
-            id="remove-col-btn"
-            class="btn col-button"
-          >
+          <button id="add-col-btn" class="btn col-button">Add Column</button>
+          <button id="remove-col-btn" class="btn col-button">
             Remove Column
           </button>
         </div>
@@ -26,6 +20,7 @@
           <button id="filluncolored-btn" class="btn select-column">
             Fill Uncolored
           </button>
+          <button id="clearall-btn" class="btn select-column">Clear All</button>
           <select name="color-select" id="color-select">
             <option>Red</option>
             <option>Green</option>
@@ -37,16 +32,8 @@
           <button id="download-btn" class="btn col-button">&#8595;</button>
         </div>
         <div class="col" id="col-3">
-          <button onclick="addRow()" id="add-row-btn" class="btn col-button">
-            Add Row
-          </button>
-          <button
-            onclick="removeRow()"
-            id="remove-row-btn"
-            class="btn col-button"
-          >
-            Remove Row
-          </button>
+          <button id="add-row-btn" class="btn col-button">Add Row</button>
+          <button id="remove-row-btn" class="btn col-button">Remove Row</button>
         </div>
       </div>
       <div id="content">
