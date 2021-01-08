@@ -12,9 +12,34 @@ const removeRow = document.querySelector('#remove-row-btn');
 
 const table = document.querySelector('table');
 
+var color = '#c23616'; // red
 /* #endregion */
 
 /* #region: Event Listeners */
+addRow.addEventListener('click', (e) => {
+  const rows = numOfRows();
+  const cols = numOfCols();
+  const rowHTML = generateRow(cols);
+  table.innerHTML += rowHTML;
+});
+
+table.addEventListener('mousedown', (e) => {
+  if (e.target.tagName == 'TD') {
+    const td = e.target;
+    td.style.backgroundColor = color;
+  }
+});
 /* #endregion */
 /* #region: Function */
+function numOfCols(tableEl = table.lastChild) {
+  return tableEl.querySelectorAll('td').length;
+}
+
+function numOfRows(tableEl = table) {
+  return tableEl.querySelectorAll('tr').length;
+}
+function generateRow(colNum = 1) {
+  const cols = '<td>&nbsp</td>'.repeat(colNum);
+  return `<tr>${cols}</tr>`;
+}
 /* #endregion */
