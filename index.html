@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Challenges III</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #474787;
+        color: white;
+      }
+      #toolbar {
+        background-color: #222831;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 30px;
+        height: 5vh;
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+
+      .col {
+        height: 100%;
+      }
+
+      button {
+        height: 100%;
+        background-color: #16697a;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        padding: 0 10px;
+      }
+
+      button:hover {
+        background-color: #1a7a8e;
+        transition: all 0.2s;
+      }
+
+      button:active {
+        background-color: #16697a;
+      }
+
+      #remove-col-btn,
+      #remove-row-btn {
+        background-color: #c70039;
+      }
+
+      #remove-col-btn:hover,
+      #remove-row-btn:hover {
+        background-color: #cd315d;
+      }
+      #remove-col-btn:active,
+      #remove-row-btn:active {
+        background-color: #c70039;
+      }
+
+      #add-col-btn,
+      #add-row-btn {
+        background-color: #478e41;
+      }
+
+      #add-col-btn:hover,
+      #add-row-btn:hover {
+        background-color: #59b151;
+      }
+      #add-col-btn:active,
+      #add-row-btn:active {
+        background-color: #478e41;
+      }
+
+      #clearall-btn {
+        background-color: #16697a;
+      }
+
+      #clearall-btn:hover {
+        background-color: #1b7f93;
+      }
+      #clearall-btn:active {
+        background-color: #16697a;
+      }
+
+      #content {
+        background-color: #262d37;
+        display: flex;
+        height: 93vh;
+      }
+
+      select {
+        height: 100%;
+        background-color: #dddddd;
+        color: black;
+        border-radius: 5px;
+        padding: 0 5px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      select:hover {
+        background-color: rgb(238, 238, 238);
+      }
+
+      table {
+        border-collapse: collapse;
+        margin: 5px;
+        /* uncomment for center align
+         margin: auto;
+         */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      td {
+        border: 1px solid #ffd369;
+        padding: 0.2rem 0.5rem;
+        cursor: pointer;
+      }
+
+      td:hover {
+        background-color: #ffd369;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="toolbar">
+        <div class="col" id="col-1">
+          <button id="add-col-btn" class="btn col-button">Add Column</button>
+          <button id="remove-col-btn" class="btn col-button">
+            Remove Column
+          </button>
+        </div>
+        <div class="col" id="col-2">
+          <button id="findall-btn" class="btn select-column">Find All</button>
+          <button id="findcolored-btn" class="btn select-column">
+            Find Colored
+          </button>
+          <button id="clearall-btn" class="btn select-column">Clear All</button>
+          <select name="color-select" id="color-select">
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+            <option value="yellow">Blue</option>
+          </select>
+        </div>
+        <div class="col" id="col-3">
+          <button id="add-row-btn" class="btn col-button">Add Row</button>
+          <button id="remove-row-btn" class="btn col-button">Remove Row</button>
+        </div>
+      </div>
+      <div id="content">
+        <table>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
