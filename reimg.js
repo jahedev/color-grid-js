@@ -1,3 +1,6 @@
+
+/* Taken From: https://github.com/gillyb/reimg */
+
 ReImg = {
   OutputProcessor: function (encodedData, svgElement) {
     var isPng = function () {
@@ -95,3 +98,4 @@ if (typeof exports === 'object' && typeof module !== void 0) {
 } else {
   window.ReImg = ReImg;
 }
+
