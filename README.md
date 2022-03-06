@@ -2,7 +2,7 @@
 ## Team: Anastasiya Chabotska, Hassan Akbar, Mohammed Hossain
 
 ### View It Here
-- https://jahedev.github.io/Assignment-5
+- https://jahedev.github.io/color-grid-js
 ---
 ### Notes
 - These are part of TTP Internship | DOM Challenges III
