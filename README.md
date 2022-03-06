@@ -1,4 +1,4 @@
-# Assignment-5
+# TTP 5th Assignment: Color Grid
 ## Team: Anastasiya Chabotska, Hassan Akbar, Mohammed Hossain
 
 ### View It Here
